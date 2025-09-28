@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Create School Logo</title>
+</head>
+<body>
+    <canvas id="logoCanvas" width="200" height="200" style="border: 1px solid #ccc;"></canvas>
+    <br><br>
+    <button onclick="downloadLogo()">Download Logo</button>
+    
+    <script>
+        const canvas = document.getElementById('logoCanvas');
+        const ctx = canvas.getContext('2d');
+        
+        // Create a circular background
+        ctx.fillStyle = '#667eea';
+        ctx.beginPath();
+        ctx.arc(100, 100, 90, 0, 2 * Math.PI);
+        ctx.fill();
+        
+        // Add school building icon
+        ctx.fillStyle = 'white';
+        ctx.fillRect(60, 80, 80, 60);
+        
+        // Add roof
+        ctx.beginPath();
+        ctx.moveTo(50, 80);
+        ctx.lineTo(100, 50);
+        ctx.lineTo(150, 80);
+        ctx.closePath();
+        ctx.fill();
+        
+        // Add windows
+        ctx.fillStyle = '#667eea';
+        ctx.fillRect(70, 90, 15, 15);
+        ctx.fillRect(115, 90, 15, 15);
+        ctx.fillRect(70, 110, 15, 15);
+        ctx.fillRect(115, 110, 15, 15);
+        
+        // Add door
+        ctx.fillRect(92, 115, 16, 25);
+        
+        // Add text
+        ctx.fillStyle = 'white';
+        ctx.font = 'bold 12px Arial';
+        ctx.textAlign = 'center';
+        ctx.fillText('SCHOOL', 100, 170);
+        
+        function downloadLogo() {
+            const link = document.createElement('a');
+            link.download = 'school-logo.png';
+            link.href = canvas.toDataURL();
+            link.click();
+        }
+        
+        // Auto download after 2 seconds
+        setTimeout(downloadLogo, 2000);
+    </script>
+</body>
+</html>
